@@ -28,6 +28,7 @@ certbot_commmand: certbot
 
 certbot_arguments:
   - --non-interactive
+  - "--email {{ certbot_email_address }}"
   - --agree-tos
   - --no-eff-email
   - --no-redirect
