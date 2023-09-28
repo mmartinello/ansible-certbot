@@ -10,10 +10,9 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - 9
-        - 10
-        - 11
-        - 12
+        - buster
+        - bullseye
+        - bookworm
 
   galaxy_tags:
     - letsencrypt
