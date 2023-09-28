@@ -1,0 +1,12 @@
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Joe backup files
+*~
+
+*.pyc
+
+.vscode

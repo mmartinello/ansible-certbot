@@ -1,0 +1,23 @@
+galaxy_info:
+  author: Mattia Martinello
+  description: An Ansible role to issue and revoke Let's Encrypt SSL
+    certificates using OVH and Cloudflare DNS challenges
+
+  license: MIT
+
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: Debian
+      versions:
+        - 9
+        - 10
+        - 11
+        - 12
+
+  galaxy_tags:
+    - letsencrypt
+    - certbot
+    - ssl
+
+dependencies: []

@@ -1,0 +1,8 @@
+---
+- name: Configure the OVH DNS challenge
+  ansible.builtin.template:
+    src: certbot-dns-ovh.ini.j2
+    dest: "{{ certbot_dns_ovh_config_file_path }}"
+    owner: root
+    group: root
+    mode: '0640'

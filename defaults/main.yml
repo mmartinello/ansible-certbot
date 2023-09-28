@@ -1,0 +1,41 @@
+---
+# SSL certificates
+certbot_certs:
+  - domains:
+      - one.domain.com
+      - two.domain.com
+      - three.domain.com
+    challenge: dns-ovh # see supported challenges
+    expand: false # true | false (default 'false')
+    post_hook: systemctl reload nginx # post-hook command
+    state: present # present | revoked
+
+# E-mail address for Let's Encrypt account
+certbot_email_address: me@domain.com
+
+# OVH DNS challenge settings (see https://certbot-dns-ovh.readthedocs.io/)
+certbot_dns_ovh_config_file_path: /etc/certbot-dns-ovh.ini
+certbot_dns_ovh_endpoint: ovh-eu
+certbot_dns_ovh_application_key: MDAwMDAwMDAwMDAw
+certbot_dns_ovh_application_secret: MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
+certbot_dns_ovh_consumer_key: MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
+
+# DNS propagation in seconds
+certbot_dns_propagation_seconds: 30
+
+# Certbot issue command
+certbot_commmand: certbot
+
+certbot_arguments:
+  - --non-interactive
+  - --agree-tos
+  - --no-eff-email
+  - --no-redirect
+
+certbot_challenges_arguments:
+  dns-ovh:
+    - --dns-ovh
+    - --dns-ovh-credentials {{ certbot_dns_ovh_config_file_path }}
+    - --dns-ovh-propagation-seconds {{ certbot_dns_propagation_seconds }}
+  dns-cloudflare: # FIXME: to be completed
+    - --dns-cloudflare

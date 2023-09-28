@@ -1,0 +1,10 @@
+---
+- name: Install Certbot
+  ansible.builtin.apt:
+    name: certbot
+    state: present
+
+- name: Install challenge packages
+  ansible.builtin.apt:
+    name: "{{ _challenge_packages }}"
+    state: present

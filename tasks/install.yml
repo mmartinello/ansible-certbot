@@ -1,0 +1,4 @@
+---
+- name: Install on Debian
+  ansible.builtin.include_tasks: install-Debian.yml
+  when: ansible_os_family in ['Debian', 'Ubuntu']

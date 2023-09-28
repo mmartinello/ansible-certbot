@@ -1,0 +1,15 @@
+---
+- name: Issue the SSL certificates
+  ansible.builtin.command:
+    cmd: "{{ certbot_commmand }} certonly {{ certbot_arguments | join (' ') }}{{ ' --expand' if item.expand is defined and item.expand }} {{ certbot_challenges_arguments[item.challenge] | join(' ') }} -d {{ item.domains | join(' -d ') }}{{ ' --post-hook \"' + item.post_hook + '\"' if item.post_hook is defined and item.post_hook }}"
+  loop: "{{ certbot_certs }}"
+  changed_when: false
+  when: item.state in ['present', 'issued']
+  ignore_errors: true
+
+- name: Revoke the SSL certificates
+  ansible.builtin.command:
+    cmd: "{{ certbot_commmand }}{{ ' certonly' if item.state == 'present'}} revoke {{ certbot_arguments | join (' ') }} {{ '--cert-name ' + item.domains[0] }}"
+  loop: "{{ certbot_certs }}"
+  changed_when: false
+  when: item.state == 'revoked'
